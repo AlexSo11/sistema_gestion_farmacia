@@ -1,6 +1,6 @@
 import customtkinter as ctk
 from tkinter import ttk, messagebox
-from dbClientes import DBClientes
+from DB.dbClientes import DBClientes
 from conexion import ConexionDB
 
 class ClientesUI:

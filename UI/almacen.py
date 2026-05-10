@@ -1,6 +1,6 @@
 import customtkinter as ctk
 from tkinter import ttk, messagebox
-from dbArticulos import DBArticulos
+from DB.dbArticulos import DBArticulos
 from conexion import ConexionDB
 from datetime import datetime
 

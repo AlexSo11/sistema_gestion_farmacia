@@ -1,7 +1,7 @@
 import tkinter as tk
 import customtkinter as ctk
 from tkinter import ttk, messagebox, simpledialog
-from dbUsuario import DBUsuario
+from DB.dbUsuario import DBUsuario
 from conexion import ConexionDB
 
 class UsuariosUI:

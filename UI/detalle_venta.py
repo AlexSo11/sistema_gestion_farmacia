@@ -1,6 +1,6 @@
 import customtkinter as ctk
 from tkinter import ttk, messagebox
-from dbVentas import DBVentas
+from DB.dbVentas import DBVentas
 from conexion import ConexionDB
 
 class DetaVentaUI:

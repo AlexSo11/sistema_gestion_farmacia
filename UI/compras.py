@@ -1,8 +1,8 @@
 import customtkinter as ctk
 from tkinter import ttk, messagebox
 from datetime import datetime, date
-from dbCompras import DBCompras
-from dbArticulos import DBArticulos
+from DB.dbCompras import DBCompras
+from DB.dbArticulos import DBArticulos
 from conexion import ConexionDB
 
 class ComprasUI:

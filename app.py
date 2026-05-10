@@ -20,14 +20,16 @@ import platform
 import os
 
 from conexion import ConexionDB
-from usuarios import UsuariosUI
-from dbUsuario import DBUsuario
-from clientes import ClientesUI
-from ventas import VentasUI
-from detalle_venta import DetaVentaUI
-from articulos import ArticulosUI
-from almacen import AlmacenUI
-from compras import ComprasUI
+
+from DB.dbUsuario import DBUsuario
+
+from UI.usuarios import UsuariosUI
+from UI.clientes import ClientesUI
+from UI.ventas import VentasUI
+from UI.detalle_venta import DetaVentaUI
+from UI.articulos import ArticulosUI
+from UI.almacen import AlmacenUI
+from UI.compras import ComprasUI
 
 ctk.set_appearance_mode("dark")
 ctk.set_default_color_theme("blue")
