@@ -1,6 +1,6 @@
 -- Crear base de datos
-CREATE DATABASE IF NOT EXISTS farmacia;
-USE farmacia;
+CREATE DATABASE IF NOT EXISTS farmacia_qci;
+USE farmacia_qci;
 
 -- Eliminar tablas
 DROP TABLE IF EXISTS almacenes;

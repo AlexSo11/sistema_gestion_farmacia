@@ -1,4 +1,4 @@
-from conexion import ConexionDB
+"""Acceso a datos de usuarios y autenticación."""
 
 class DBUsuario:
     def __init__(self, conexion):
@@ -16,7 +16,6 @@ class DBUsuario:
                 
                 usuario = cursor.fetchone()
                 if usuario:
-                    print(f"Login exitoso para usuario: {username}")
                     return True, {
                         'id': usuario[0],
                         'username': usuario[1],
@@ -25,16 +24,7 @@ class DBUsuario:
                         'email': usuario[4],
                         'rol': usuario[5]
                     }
-                else:
-                    print(f"Login fallido - Usuario: {username}")
-                    # Debug: Verificar si el usuario existe
-                    cursor.execute("SELECT username, password FROM usuarios WHERE username = %s", (username,))
-                    debug_user = cursor.fetchone()
-                    if debug_user:
-                        print(f"Usuario encontrado. Password en BD: '{debug_user[1]}', Password ingresado: '{password}'")
-                    else:
-                        print(f"Usuario '{username}' no existe en la base de datos")
-                    return False, "Usuario o contraseña incorrectos"
+                return False, "Usuario o contraseña incorrectos"
                     
             except Exception as e:
                 print(f"Error detallado en autenticación: {str(e)}")
