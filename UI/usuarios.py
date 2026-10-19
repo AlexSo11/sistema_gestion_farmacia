@@ -1,6 +1,7 @@
-import tkinter as tk
+"""Interfaz de gestión de usuarios."""
+
 import customtkinter as ctk
-from tkinter import ttk, messagebox, simpledialog
+from tkinter import ttk, messagebox
 from DB.dbUsuario import DBUsuario
 from conexion import ConexionDB
 

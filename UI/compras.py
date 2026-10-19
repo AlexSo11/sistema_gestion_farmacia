@@ -1,3 +1,5 @@
+"""Interfaz de compras a proveedores."""
+
 import customtkinter as ctk
 from tkinter import ttk, messagebox
 from datetime import datetime, date
@@ -269,19 +271,9 @@ class ComprasUI:
                 }
             
             self.combo_articulos.configure(values=nombres_articulos)
-            print(f"✅ Cargados {len(nombres_articulos)} artículos correctamente")
             
         except Exception as e:
             print(f"❌ Error cargando artículos: {e}")
-            # Debug: mostrar qué está retornando exactamente
-            try:
-                articulos = self.db_articulos.obtener_articulos()
-                if articulos:
-                    print(f"🔍 Estructura del primer artículo: {articulos[0]}")
-                    print(f"🔍 Número de columnas: {len(articulos[0])}")
-            except Exception as debug_e:
-                print(f"🔍 Error en debug: {debug_e}")
-            
             messagebox.showerror("Error", f"Error cargando artículos: {str(e)}")
 
     def seleccionar_articulo(self, choice):
@@ -292,7 +284,6 @@ class ComprasUI:
                 # Establecer precio de compra sugerido
                 precio_sugerido = "0.0"
                 self.var_precio.set(precio_sugerido)
-                print(f"✅ Artículo seleccionado: {articulo_data['nombre']} (ID: {articulo_data['id']})")
                 self.actualizar_estado_botones()
         except Exception as e:
             print(f"❌ Error seleccionando artículo: {e}")
@@ -385,7 +376,6 @@ class ComprasUI:
                         articulo_eliminado = self.carrito.pop(index)
                         self.actualizar_carrito_ui()
                         self.actualizar_estado_botones()
-                        print(f"🗑️ Artículo eliminado: {articulo_eliminado['articulo_nombre']}")
         except Exception as e:
             print(f"❌ Error eliminando del carrito: {e}")
             messagebox.showerror("Error", f"Error eliminando del carrito: {str(e)}")

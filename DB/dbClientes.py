@@ -1,4 +1,4 @@
-from conexion import ConexionDB
+"""Acceso a datos de clientes y sus puntos de fidelidad."""
 
 class DBClientes:
     def __init__(self, conexion):

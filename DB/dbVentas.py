@@ -1,4 +1,4 @@
-from conexion import ConexionDB
+"""Acceso a datos de ventas y su detalle."""
 
 class DBVentas:
     def __init__(self, conexion):

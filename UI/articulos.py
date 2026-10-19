@@ -1,3 +1,5 @@
+"""Interfaz de gestión de artículos."""
+
 import customtkinter as ctk
 from tkinter import ttk, messagebox
 from DB.dbArticulos import DBArticulos

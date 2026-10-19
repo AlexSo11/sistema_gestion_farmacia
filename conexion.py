@@ -1,3 +1,5 @@
+"""Conexión a MySQL para la base de datos ``farmacia_qci``."""
+
 import mysql.connector
 from mysql.connector import Error
 

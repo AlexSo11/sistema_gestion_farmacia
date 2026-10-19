@@ -15,9 +15,8 @@ Desarrollo AlexWhite USER GIT AlexSo11
 """
 import tkinter as tk
 import customtkinter as ctk
-from tkinter import ttk, messagebox
+from tkinter import messagebox
 import platform
-import os
 
 from conexion import ConexionDB
 

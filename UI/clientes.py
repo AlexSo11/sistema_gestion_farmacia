@@ -1,3 +1,5 @@
+"""Interfaz de gestión de clientes."""
+
 import customtkinter as ctk
 from tkinter import ttk, messagebox
 from DB.dbClientes import DBClientes

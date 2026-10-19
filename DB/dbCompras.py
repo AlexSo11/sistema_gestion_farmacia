@@ -1,4 +1,5 @@
-from conexion import ConexionDB
+"""Acceso a datos de compras a proveedores y generación de folios."""
+
 import datetime
 
 class DBCompras:
