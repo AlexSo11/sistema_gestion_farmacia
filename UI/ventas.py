@@ -1,3 +1,5 @@
+"""Interfaz de ventas (punto de venta)."""
+
 import customtkinter as ctk
 from tkinter import ttk, messagebox
 from DB.dbVentas import DBVentas
@@ -352,7 +354,6 @@ class VentasUI:
                     if articulo[1] == codigo:
                         self.var_articulo_id.set(str(articulo[0]))
                         self.var_precio.set(str(float(articulo[4])))
-                        print(f"Artículo seleccionado: {articulo[2]} (Código: {codigo})")
                         break
         except Exception as e:
             print(f"Error seleccionando artículo: {e}")
@@ -574,9 +575,6 @@ class VentasUI:
                 return
 
             stock_actual = articulo[5]
-            if cantidad > stock_actual:
-                messagebox.showerror("Error", f"Stock insuficiente. Stock actual: {stock_actual}")
-                return
 
             # Verificar si el artículo ya está en el carrito
             articulo_en_carrito = None
@@ -584,6 +582,12 @@ class VentasUI:
                 if item['articulo_id'] == articulo_id and not item.get('es_promocion', False):
                     articulo_en_carrito = item
                     break
+
+            # Validar contra el total que quedaría en el carrito, no solo la cantidad nueva
+            cantidad_total = cantidad + (articulo_en_carrito['cantidad'] if articulo_en_carrito else 0)
+            if cantidad_total > stock_actual:
+                messagebox.showerror("Error", f"Stock insuficiente. Stock actual: {stock_actual}")
+                return
 
             if articulo_en_carrito:
                 # Sumar cantidad al artículo existente

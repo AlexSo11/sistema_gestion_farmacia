@@ -1,3 +1,5 @@
+"""Interfaz de detalle de ventas."""
+
 import customtkinter as ctk
 from tkinter import ttk, messagebox
 from DB.dbVentas import DBVentas
@@ -268,73 +270,6 @@ class DetaVentaUI:
         except Exception as e:
             print(f"Error mostrando info: {e}")
 
-    def cargar_ventas(self):
-        """Cargar todas las ventas"""
-        try:
-            # Limpiar árbol
-            for item in self.tree_ventas.get_children():
-                self.tree_ventas.delete(item)
-            
-            # Obtener ventas
-            ventas = self.db.obtener_ventas()
-            
-            for venta in ventas:
-                # Formatear el total con símbolo de moneda
-                venta_list = list(venta)
-                venta_list[2] = f"${venta[2]:,.2f}"
-                self.tree_ventas.insert('', 'end', values=tuple(venta_list))
-                
-        except Exception as e:
-            messagebox.showerror("Error", f"Error cargando ventas: {str(e)}")
-
-    def seleccionar_venta(self, event):
-        """Cuando se selecciona una venta, mostrar sus detalles"""
-        selected = self.tree_ventas.selection()
-        if not selected:
-            return
-            
-        try:
-            item = self.tree_ventas.item(selected[0])
-            values = item['values']
-            
-            if values:
-                venta_id = values[0]
-                self.venta_seleccionada = venta_id
-                self.cargar_detalles(venta_id)
-                
-        except Exception as e:
-            messagebox.showerror("Error", f"Error seleccionando venta: {str(e)}")
-
-    def cargar_detalles(self, venta_id):
-        """Cargar los detalles de una venta específica"""
-        try:
-            # Limpiar árbol de detalles
-            for item in self.tree_detalles.get_children():
-                self.tree_detalles.delete(item)
-            
-            # Obtener detalles de la venta
-            detalles = self.db.obtener_detalles_venta(venta_id)
-            
-            total = 0
-            for detalle in detalles:
-                # detalle = (articulo_nombre, cantidad, precio_unitario, subtotal)
-                detalle_formateado = (
-                    detalle[0],  # Artículo
-                    detalle[1],  # Cantidad
-                    f"${detalle[2]:,.2f}",  # Precio unitario
-                    f"${detalle[3]:,.2f}"   # Subtotal
-                )
-                self.tree_detalles.insert('', 'end', values=detalle_formateado)
-                total += detalle[3]
-            
-            # Actualizar label de total
-            self.lbl_total.configure(
-                text=f"💰 Total de la venta: ${total:,.2f}"
-            )
-            
-        except Exception as e:
-            messagebox.showerror("Error", f"Error cargando detalles: {str(e)}")
-
     def eliminar_venta_seleccionada(self):
         """Eliminar la venta seleccionada"""
         if not self.venta_seleccionada:
@@ -361,7 +296,7 @@ class DetaVentaUI:
                     # Limpiar detalles
                     for item in self.tree_detalles.get_children():
                         self.tree_detalles.delete(item)
-                    self.lbl_total.configure(text="Seleccione una venta para ver detalles")
+                    self.lbl_info_venta.configure(text="Seleccione una venta para ver los detalles")
                 else:
                     messagebox.showerror("Error", msg)
             except Exception as e:
